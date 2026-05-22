@@ -162,7 +162,6 @@
     }
 }
 
-
 @media (max-width: 570px) {
     .main-title {
         font-size: 88px;
@@ -173,7 +172,7 @@
     }
 
     .main-actions {
-        width: 100%;
+       width: 100%;
     }
 
     .main-actions .button {

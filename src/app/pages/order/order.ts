@@ -1,4 +1,4 @@
-import { Component, signal} from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Header } from '../../header/header';
 import { DELIVERY_SIZES, DELIVERY_SPEEDS } from './order.config';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -25,6 +25,7 @@ export class Order {
   public orderId: any = signal(null);
   public calculationResult: any = signal(null);
 
+
   constructor(private formBuilder: FormBuilder) {
     this.routeForm = this.formBuilder.group({
       from: ['', Validators.required],
@@ -38,7 +39,6 @@ export class Order {
       comment: ['']
     });
   }
-
 
   ngOnInit() {
     ymaps.ready(() => {
@@ -57,9 +57,11 @@ export class Order {
   public selectSize(size: string) {
     this.routeForm.controls['size'].setValue(size);
   }
+
   public selectSpeed(speed: string) {
     this.routeForm.controls['speed'].setValue(speed);
   }
+
   public calculate() {
     this.calculationResult.set(null);
 
@@ -118,10 +120,12 @@ export class Order {
 
     this.mapRoute.model.events.add('requestfail', () => this.failedCalculation());
   }
+
   private failedCalculation() {
     this.calculationResult.set(null);
     alert('Не удалось построить маршрут. Проверьте адреса и выбранные параметры.');
   }
+
   public submitOrder() {
     const calculation = this.calculationResult();
     if (!calculation) {
@@ -148,5 +152,5 @@ export class Order {
     console.log(payload);
     this.orderId.set(1);
   }
-}
 
+}
